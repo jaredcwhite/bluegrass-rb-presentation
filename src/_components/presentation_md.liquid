@@ -1,0 +1,362 @@
+class: center, middle, white-titles animated fadeIn faster
+background-image: url(https://fundraising.bridgetownrb.com/images/bridgetown-background.jpg)
+
+# Database-Driven Apps with Bridgetown, Roda, Hotwire Turbo, and Lifeform
+## (or How I Learned to Love CRUD All Over Again)
+
+---
+class: animated fadeInRight faster bigger-list bold-list
+
+# Here’s What We’ll Talk About
+
+1. Target Audience
+2. Why Roda?
+4. ActiveRecord? Outside of Rails?!
+3. Turbo? Outside of Rails?!
+5. What’s Lifeform?
+6. DEMO TIME
+7. Q & A
+
+.right.gray[Presented by Jared White on]
+.right.gray[Monday, November 7, 2022]
+
+---
+class: center middle animated zoomIn big
+
+# The Bridgetown Web App framework
+
+.big[![Bridgetown](https://www.bridgetownrb.com/images/bridgetown-logo-twitter-card.jpg)]
+
+## But why? For whom?
+
+---
+class: center middle animated fadeInRight
+
+# Who are we competing with?
+
+---
+class: center middle
+
+# Who are we competing with?
+
+.medium[![Ruby on Rails](/assets/railslogo.svg)]
+
+# 🤡
+
+---
+class: center middle
+
+# No.
+
+![Bugs Bunny says NO](/assets/bugs-no.jpg)
+
+---
+class: animated fadeInRight
+
+# Bridgetown Competitors:
+
+---
+# Bridgetown Competitors:
+
+* **Gatsby**
+--
+* **Astro**
+--
+* **Eleventy**
+--
+* **Next**
+--
+* **Nuxt**
+--
+* **SvelteKit**
+--
+* (And on and on and on it goes…)
+
+---
+class: center middle animated zoomIn big
+
+# Attack of the ~~Clones~~ JS Frameworks
+
+.big[![Frameworks](/assets/javascript_frameworks.jpg)]
+
+---
+class: center middle animated zoomIn big
+
+# Web Developer Just Starting Out:
+
+.big[![A New Man, Apparently Free](/assets/new-free-man.jpg)]
+
+## Apparently Free! 😎
+
+---
+class: center middle animated zoomIn big
+
+# After Your 30th Framework/Build Tool/Hosting Infra/etc.…
+
+.medium[![Not Free](/assets/not-free.jpg)]
+
+## We’re not here because we’re free… <br/>we’re here because we’re **NOT free!**
+
+---
+class: center middle
+
+# Just Say No to Yak Shaving. 😂
+
+.medium[![Yak Intensifies](/assets/yak-intensifies.gif)]
+
+---
+class: center middle animated zoomIn big
+
+# Bridgetown: <br/>YARF (Yet Another Ruby Framework)
+
+.medium[![Bridgetown](https://www.bridgetownrb.com/images/bridgetown-logo-twitter-card.jpg)]
+
+## Gotta compete with **YAJSF**, amirite? 🥸
+
+---
+class: center middle animated fadeInRight
+
+# But, like, this is a big problem.
+
+## We need a solution which presents a compelling alternative to the frontend-themed YAJSF explosion.
+
+## Rails/Hanami/Jekyll/Middleman/etc. ain’t it.
+
+---
+class: center middle animated fadeInRight
+
+# “I built a site using Astro and that was cool and all, but…I really love Ruby. Can I use Bridgetown?”
+
+---
+class: center middle
+
+# “I built a site using Astro and that was cool and all, but…I really love Ruby. Can I use Bridgetown?”
+
+# _YES!_ <br />👍
+
+---
+class: animated fadeInRight
+
+# Bridgetown: SSG & SSR
+
+## SSR is Powered by **Roda**
+
+* [The Routing Tree Web Toolkit](http://roda.jeremyevans.net), created by Jeremy Evans
+* **Simplicity**: Roda is designed to be simple, both internally and externally, reducing cognitive overhead.
+* **Usability**: Roda uses a routing tree. At any point during routing, it allows you to operate on the current request.
+* **Productivity**: Roda makes it easy to develop applications quickly.
+
+---
+class: animated fadeInRight
+
+# Roda route blocks:
+
+```ruby
+class App < Roda
+  route do |r|
+    # /hello branch
+    r.on "hello" do
+      # Set variable for all routes in /hello branch
+      @greeting = 'Hello'
+
+      # GET /hello/world request
+      r.get "world" do
+        "#{@greeting} world!"
+      end
+
+      # /hello request
+      r.is do
+        # GET /hello request
+        r.get do
+          "#{@greeting}!"
+        end
+
+        # POST /hello request
+        r.post do
+          @name = r.params["name"]
+          puts "#{@greeting} #{@name}!"
+          r.redirect
+        end
+      end
+    end
+  end
+end
+```
+
+---
+class: center middle animated zoomIn
+
+# Bridgetown provides an “opinionated distribution” of Roda
+
+## With some extra features. Most notably: <br/>**File-Based Routing**
+
+```
+_routes/items/index.erb
+_routes/items/[slug].erb
+
+_routes/books/[slug]/chapter/[chapter].erb
+```
+
+---
+class: animated fadeInRight
+
+# Roda + Bridgetown in action
+
+`_routes/items/[slug].erb`
+
+```erb
+---<%
+
+# route: /items/:slug
+r.get do
+  item_id, *item_sku = params[:slug].split("-")
+  item_sku = item_sku.join("-")
+
+  render_with data: {
+    layout: :page,
+    title: "Item Page",
+    item_id: item_id,
+    item_sku: item_sku
+  }
+end
+%>---
+
+<p><strong>Item ID:</strong> <%= data.item_id %></p>
+
+<p><strong>Item SKU:</strong> <%= data.item_sku %></p>
+```
+
+---
+# Roda + Bridgetown in action
+
+`_routes/items/[slug].erb`
+
+```erb
+---<%  # <== This looks like front matter!
+
+# route: /items/:slug
+r.get do
+  item_id, *item_sku = params[:slug].split("-")
+  item_sku = item_sku.join("-")
+
+  render_with data: {    # <== This provides data to the template below
+    layout: :page,
+    title: "Item Page",
+    item_id: item_id,
+    item_sku: item_sku
+  }
+end
+%>---
+
+<p><strong>Item ID:</strong> <%= data.item_id %></p>   <== Roda data var
+
+<p><strong>Item SKU:</strong> <%= data.item_sku %></p> <== Roda data var
+```
+
+---
+class: center middle animated zoomIn
+
+# You’ll see Roda in action in the upcoming DEMO.
+
+## Next: key plugins to aid your CRUD, starting with:
+
+---
+class: center middle animated zoomIn faster
+
+# Active Record
+
+.fullstackruby-logo[![Ruby on Rails](/assets/railslogo.svg)]
+
+---
+class: center middle animated zoomIn faster
+
+# .fullstackruby-logo[![Turbo](/assets/turbo-logo.svg)]
+
+## (Primarily **Stream** responses running over HTTP.)
+
+### P.S. Custom Actions are the bees’ knees.
+
+---
+class: center middle animated zoomIn faster
+
+# 🧬 Lifeform
+
+## A new form component library in development, powered by **Phlex**. Compatible with both Bridgetown _and_ Rails (replacing all previous form helpers).
+
+### Define forms as objects using a simple DSL, then render those forms potentially as one-liners. Never wrestle with horrible form template markup again! 🙌
+
+---
+class: animated fadeInRight faster
+
+# 🧬 Lifeform in action:
+
+```ruby
+class Forms::Movie < Lifeform::Form
+  field :title,
+        label: "Title (required)",
+        required: true,
+        autofocus: true
+  field :year,
+        label: "Year (required)",
+        required: true
+  field :director,
+        label: "Director"
+
+  field :submit, type: :submit_button, label: "Save"
+end
+```
+
+```erb
+<%= render Forms::Movie.new(data.movie) %>
+```
+
+---
+class: animated fadeInRight faster
+
+# 🧬 Lifeform features
+
+* Mix 'n' match fields from various component libraries. Will ship with a "default" vanilla one and one for Shoelace.
+* Easily write your own field types using Phlex templates.
+* Framework-agnostic: not only Bridgetown or Rails, but potentially any Ruby web framework.
+* If you need more rendering flexibility than the "one-liner", you can render any field out individually in any order and even override specific options.
+
+---
+class: center middle animated zoomIn
+
+# 🤘 DEMO TIME 🤘
+
+.avatar[![Bridgetown Logo](/assets/bridgetown-avatar.svg)]
+
+---
+class: animated fadeInRight
+
+# Bridgetown SSR / CRUD
+
+* Progressively enhance your static/public content with all the extra bits.
+  * Forms
+  * E-commerce
+  * Paywalls
+  * Dashboards
+  * Digital Products
+  * Anything which doesn't map cleanly to static builds.
+
+* See how far you can push this stack before reaching for “The Big Kahuna” (Rails?)
+* You can always rewrite your backend later and still use Bridgetown for the frontend. I know this because Jekyll + Rails installs used to be my jam!
+
+---
+class: center middle animated zoomIn big
+
+# The Bridgetown Web App framework
+
+.medium[![Bridgetown](https://www.bridgetownrb.com/images/bridgetown-logo-twitter-card.jpg)]
+
+## Open for business in 2022, 2023, and beyond.
+
+---
+class: center middle animated fadeInRight faster
+
+# Questions?
+
+.avatar[![Bridgetown Logo](/assets/bridgetown-avatar.svg)]
+
+## **[www.bridgetownrb.com](https://www.bridgetownrb.com)**

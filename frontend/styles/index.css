@@ -1,0 +1,174 @@
+@import "animate.css";
+@import "../fonts/FiraGO/FiraGO.css";
+@import "../fonts/FiraCode/FiraCode.css";
+
+body {
+  font-family: 'FiraGO';
+  font-size: 22px;
+  color: #363430;
+  -webkit-text-size-adjust: 100%;
+}
+body, body.remark-container {
+  background-color: #B2B09B;
+}
+.gray {
+  color: #999;
+}
+
+h1 { font-weight: 800; font-size: 2.2em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.2em; }
+
+h2, h3 {
+  font-weight: normal;
+}
+
+.remark-code, .remark-inline-code { font-family: 'Fira Code'; }
+.hljs-github .hljs {
+  border: 1px dashed #B2B09B;
+  background-color: #fafafa;
+  padding: .8em;
+}
+
+.remark-slide-content {
+  background-size: cover;
+}
+
+.white-titles h1, .white-titles h2, .white-titles h3 {
+  color: white;
+  text-shadow: 0px 4px 12px black;
+}
+.white-titles h2 {
+  color: rgb(255, 213, 159);
+}
+
+.remark-slide-content p img {
+  max-width: 350px;
+}
+.avatar img {
+  width: 200px;
+}
+.avatar img, .rounded img {
+  border-radius: 50%;
+}
+p .medium img {
+  max-width: 100%;
+  width: 525px;
+}
+p .big img {
+  max-width: 100%;
+  width: 750px;
+}
+.small img {
+  max-width: 225px !important;
+}
+.twitter img {
+  vertical-align: -0.6em;
+  height: 1.8em;
+  margin-right: 0em;
+}
+.github img {
+  vertical-align: -0.2em;
+  height: 1.1em;
+  margin-right: 0.3em;
+}
+
+.fullstackruby-logo img {
+  width: 275px;
+}
+
+.previousSlideButton, .nextSlideButton {
+  cursor: pointer;
+  font-family: sans-serif;
+  position: absolute;
+  z-index: 10;
+  border: none;
+  background: rgba(0,0,0,0.2);
+  color: white;
+  font-size: 31px;
+  line-height: 0;
+  height: 54px;
+  padding: 11px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  top: 45%;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.previousSlideButton.appearAfterMouseMove, .nextSlideButton.appearAfterMouseMove {
+  opacity: 1;
+}
+
+.previousSlideButton {
+  left: 10px;
+}
+.nextSlideButton {
+  right: 10px;
+}
+
+textarea#source {
+  display: none;
+}
+
+p, ul, ol, blockquote {
+  line-height: 150%;
+}
+p > a, li > a, blockquote > a, em > a, strong > a, span > a {
+  color: #DB504A;
+}
+li {
+  margin-bottom: .7em;
+}
+
+.bigger-list li, .big-text {
+  font-size: 1.5em;
+}
+
+.bold-list :is(ol, ul) {
+  font-weight: bold;
+}
+
+blockquote {
+  margin-left: 0;
+  padding-left: 1.5em;
+  border-left: 5px solid #DB504A; 
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.ruby-color {
+  color: #CC0000;
+}
+
+h1.colorful {
+  background: #CC0000;
+  animation: bgColor 5s infinite linear;
+  color: white;
+  padding: .3em;
+}
+@keyframes bgColor {
+  12.5% {
+    background-color: #CC0000;
+  }
+  25% {
+    background-color: #CC8500;
+  }
+  37.5% {
+    background-color: #CCCC00;
+  }
+  50% {
+    background-color: #409900;
+  }
+  62.5% {
+    background-color: #00AACC;
+  }
+  75% {
+    background-color: #0000CC;
+  }
+  87.5% {
+    background-color: #9932CC;
+  }
+  100% {
+    background-color: #CC2463;
+  }
+}
