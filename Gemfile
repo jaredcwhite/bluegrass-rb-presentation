@@ -1,5 +1,5 @@
 source "https://rubygems.org"
 
-gem "bridgetown", "~> 1.1"
+gem "bridgetown", "~> 1.2"
 
-gem "puma", "~> 5.6"
+gem "puma", "~> 6.1"

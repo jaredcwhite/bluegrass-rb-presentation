@@ -1,43 +1,182 @@
 class: center, middle, white-titles animated fadeIn faster
 background-image: url(https://fundraising.bridgetownrb.com/images/bridgetown-background.jpg)
 
-# Database-Driven Apps with Bridgetown, Roda, Hotwire Turbo, and Lifeform
-## (or How I Learned to Love CRUD All Over Again)
+# Bridgetown: Ruby Relevance While Embracing the Frontend
+## (and 🤘 rocking that HTML-first lifestyle 🤘)
 
 ---
 class: animated fadeInRight faster bigger-list bold-list
 
 # Here’s What We’ll Talk About
 
-1. Target Audience
-2. Why Roda?
-4. ActiveRecord? Outside of Rails?!
-3. Turbo? Outside of Rails?!
-5. What’s Lifeform?
-6. DEMO TIME
-7. Q & A
+1. A Brief Introduction
+2. Why Bridgetown
+3. HTML-First Mindset
+4. Sizing Up the “Competition”
+5. SSR: Why Use Roda?
+6. ActiveRecord? Outside of Rails?!
+7. Turbo? Outside of Rails?!
+8. Q & A
 
-.right.gray[Presented by Jared White on]
-.right.gray[Monday, November 7, 2022]
+.right.gray[Presented by Jared White on Tuesday, May 16, 2023]
+
+---
+class: center animated fadeIn
+
+# Allow Me To Introduce Myself
+--
+
+.avatar[![Jared White](/assets/jared-studio-professional.jpg)]
+
+I’m Jared White, the Founder and Lead Rubyist at [Whitefusion](https://www.whitefusion.studio),  
+a boutique web studio based in Portland, OR.
+
+[.github[![Mastodon](/assets/mastodon.svg)]@jaredwhite@indieweb.social](https://indieweb.social/@jaredwhite) .gray[/] [.github[![Github](/assets/github.svg)]@jaredcwhite](https://github.com/jaredcwhite)
+
+I’ve been a Rails dev since 2008, and a Jekyll/Bridgetown site builder since 2015.
+
+And as a designer/developer/blogger in general, since 1997!!! 😱
+
+---
+class: animated fadeInRight faster
+
+&nbsp;
+
+.center.spicy-logo[![Spicy Web Logo](https://www.spicyweb.dev/images/spicy-web-logo.svg)]
+
+&nbsp;
+
+* Blog posts & videos about "vanilla" frontend web specifications & techniques
+* Discord community to share tips 'n' tricks
+* New podcast just dropped: **Just a Spec**
+* Upcoming: a subscription platform for courses which do a deep dive into web topics
+  * The first one will be all about writing modern, maintainable CSS using design system thinking
+
+.center[🔗 [SpicyWeb.dev](https://www.spicyweb.dev)]
+
+---
+class: animated fadeInRight faster
+
+&nbsp;
+
+.center.fullstackruby-logo[![Fullstack Ruby Logo](/assets/fullstackruby.svg)]
+
+&nbsp;
+
+* A blog about Ruby-themed web development topics and “the art of code”
+* A podcast about, er, well, all that too 😄
+* Join our mailing list of over 300 Ruby developers:
+
+.center[🔗 [FullstackRuby.dev](https://www.fullstackruby.dev)]
 
 ---
 class: center middle animated zoomIn big
 
-# The Bridgetown Web App framework
+# “Friendly Neighborhood Spider-Man” of Bridgetown
 
 .big[![Bridgetown](https://www.bridgetownrb.com/images/bridgetown-logo-twitter-card.jpg)]
 
-## But why? For whom?
+---
+class: center middle animated fadeIn big faster
+
+.big[![Bridgetown](https://www.bridgetownrb.com/images/bridgetown-logo-twitter-card.jpg)]
+
+## Bridgetown is the “spiritual successor” to Jekyll and a popular choice for Rubyists building websites and modest applications
 
 ---
 class: center middle animated fadeInRight
 
-# Who are we competing with?
+# Features Galore.
+
+.big[![Super-dee-dooper Features](/assets/super-dee-dooper.jpg)]
+
+---
+class: center middle animated zoomIn
+
+# “Hybrid Architecture”
+
+![architecture gif](/assets/architecture-building.gif)
+
+---
+class: animated fadeIn faster
+
+# SSG vs. SSR
+
+* Static Site Generation (**SSG**): build once for deployment (usually for each Git commit or from a CMS trigger). It's cached "forever".
+* Server-Side Rendering (**SSR**): dynamically build and serve HTML for each request, requires a web server (obviously). No caching unless you somehow opt-in.
+
+--
+
+.center[![why not both?](/assets/why-not-both.gif)]
+
+---
+class: animated fadeInRight
+
+# SSG _and_ SSR 😃👍
+
+## aka the “DREAMstack”
+
+### (Delightful Ruby Expressing APIs & Markup)
+
+* **SSG**: build key public pages once per deployment, cached "forever" via CDN. In other words, your “**Marketing / Content Site**”
+* **SSR**: dynamically build and serve HTML for each request on pages which need CRUD (Create, Read, Update, Delete), user presence, paywalled content, and other up-to-the-minute data. aka your “**Web Application**”
+* Use techniques like **Hotwire Turbo**, componentized views, and "island architecture" to infuse static pages with dynamic content.
+* Our SSR features are powered by **Roda**, a fast web toolkit with much to recommend it vs. Rails for _some_ projects.
+
+---
+class: center middle animated zoomIn faster
+
+# Bridgetown is a fullstack framework. <br /><br/>“Static Site Generator” is a feature.
+
+## (this may take some getting used to…)
+
+---
+class: center middle animated fadeInRight faster
+
+<h1 class="colorful">A Word on THE FUTURE OF THE WEB™</h1>
+
+---
+class: center middle animated zoomIn faster
+
+# The Future of the Web is:
+
+## React Server Components + Turbopack + Tailwind + Deno + Edge + TypeScript + GraphQL + …
 
 ---
 class: center middle
 
-# Who are we competing with?
+# No.
+
+![Bugs Bunny says NO](/assets/bugs-no.jpg)
+
+---
+class: center middle animated fadeInRight faster
+
+# Let’s keep pushing a <br/>\*\*polyglot web & standards\*\* forward.
+
+## The Bridgetown Manifesto is: <br/>not “100% vanilla” HTTP/HTML/CSS/JS…but _close_.
+
+---
+class: center middle
+
+## (and of course, .twitter[![Ruby](/assets/ruby.svg)] **Ruby**!)
+
+---
+class: center middle animated zoomIn big
+
+# As we head towards Bridgetown 2.0…
+
+## …we will be adopting more and more of an <br/>**“HTML-first” mindset**, from the way we write UI components to the way we deliver new frontend features and technologies.
+
+_HTML Modules_ &nbsp; _Declarative Shadow DOM_ &nbsp; _ElementInternals_ &nbsp; _Form Validation API_ &nbsp; _Modern Browser-Native CSS_ &nbsp; _Import Maps & ESM Servers_ &nbsp; _Islands Architecture_
+
+---
+class: center middle animated fadeInRight
+
+# So…like, who exactly are we competing with anyway?
+
+---
+class: center middle
 
 .medium[![Ruby on Rails](/assets/railslogo.svg)]
 
@@ -139,7 +278,7 @@ class: animated fadeInRight
 
 # Bridgetown: SSG & SSR
 
-## SSR is Powered by **Roda**
+## The SSR Functionality is Powered by **Roda**
 
 * [The Routing Tree Web Toolkit](http://roda.jeremyevans.net), created by Jeremy Evans
 * **Simplicity**: Roda is designed to be simple, both internally and externally, reducing cognitive overhead.
@@ -256,9 +395,9 @@ end
 ---
 class: center middle animated zoomIn
 
-# You’ll see Roda in action in the upcoming DEMO.
+# We're continuing to invest in our Roda integration as well as better documentation.
 
-## Next: key plugins to aid your CRUD, starting with:
+## Next: some key plugins to aid your CRUD, including:
 
 ---
 class: center middle animated zoomIn faster
@@ -321,13 +460,6 @@ class: animated fadeInRight faster
 * If you need more rendering flexibility than the "one-liner", you can render any field out individually in any order and even override specific options.
 
 ---
-class: center middle animated zoomIn
-
-# 🤘 DEMO TIME 🤘
-
-.avatar[![Bridgetown Logo](/assets/bridgetown-avatar.svg)]
-
----
 class: animated fadeInRight
 
 # Bridgetown SSR / CRUD
@@ -346,11 +478,11 @@ class: animated fadeInRight
 ---
 class: center middle animated zoomIn big
 
-# The Bridgetown Web App framework
+# And That’s Bridgetown.
 
 .medium[![Bridgetown](https://www.bridgetownrb.com/images/bridgetown-logo-twitter-card.jpg)]
 
-## Open for business in 2022, 2023, and beyond.
+## Open for business in 2023 and beyond.
 
 ---
 class: center middle animated fadeInRight faster
